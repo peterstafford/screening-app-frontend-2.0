@@ -1,5 +1,5 @@
 class Configuration {
-  apiBaseUrl = "https://screening-system-backend.herokuapp.com/";
+  apiBaseUrl = "https://screening-app-backend-bn654.ondigitalocean.app/";
   // apiBaseUrl = "http://localhost:8080/";
 }
 
