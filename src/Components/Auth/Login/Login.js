@@ -18,7 +18,7 @@ const Login = (props) => {
         console.log("Valuessss", values);
         adminService.login(values.email, values.password).then((res) => {
           adminService.handleCustomMessage("Logged In Successfully");
-          props.history.push("/");
+          props.history.push("/user");
           window.location.reload();
         });
       }}
