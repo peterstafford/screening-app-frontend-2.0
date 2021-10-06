@@ -1,0 +1,17 @@
+.header {
+  background-color: var(--color-primary) !important;
+  .bg-light {
+    background-color: var(--color-primary) !important;
+  }
+  .navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .Logout {
+    cursor: pointer;
+    text-align: end;
+  }
+}
