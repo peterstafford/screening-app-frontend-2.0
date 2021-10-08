@@ -9,7 +9,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import { CSVLink } from "react-csv";
-
+import $ from "jquery";
 const ViewAnswer = (props) => {
   const [applyfilter, setApplyFilter] = useState("");
   const [modalDelete, setModalDelete] = useState(false);
@@ -26,7 +26,6 @@ const ViewAnswer = (props) => {
       //   field: "QuestionTwo",
       //   sort: "asc",
       // },
-
       // {
       //   label: "Question 3",
       //   field: "QuestionThree",
@@ -95,13 +94,10 @@ const ViewAnswer = (props) => {
     ],
     rows: [],
   });
-
   useEffect(() => {
     getAllQuestions(applyfilter);
   }, [modalDelete, applyfilter]);
-
   const toggleDelete = () => setModalDelete(!modalDelete);
-
   const handleDelete = () => {
     answerService
       .deleteAnswers()
@@ -119,7 +115,29 @@ const ViewAnswer = (props) => {
         console.log("err", err);
       });
   };
-
+  const changeColor = () => {
+    $("tbody > tr").each(function (index) {
+      // console.log("trs", this);
+      var one = $(this).children("td").eq(1).text();
+      var zero = $(this).children("td").eq(0).text();
+      var two = $(this).children("td").eq(2).text();
+      var three = $(this).children("td").eq(3).text();
+      var finalone = parseInt(one);
+      var finalzero = parseInt(zero);
+      console.log("zero", zero, one, two, three);
+      if (!(zero === "Yes" && one === "No" && two === "No" && three === "No")) {
+        $(this).css("color", "red");
+      } else {
+        $(this).css("color", "black");
+      }
+    });
+  };
+  $(document).ready(function () {
+    changeColor();
+    $(document).on("click", "th", function () {
+      changeColor();
+    });
+  });
   const getAllQuestions = (month) => {
     answerService
       .getAnswers(month)
@@ -220,7 +238,6 @@ const ViewAnswer = (props) => {
         console.log(err);
       });
   };
-
   return (
     <div class="container add-answer mt-3">
       <div className="card m-b-20">
@@ -301,7 +318,6 @@ const ViewAnswer = (props) => {
             data={dataa}
             theadColor="#000"
           />
-
           <Modal isOpen={modalDelete} toggle={toggleDelete}>
             <ModalHeader toggle={toggleDelete}>
               Delete User Responses?
@@ -331,5 +347,4 @@ const ViewAnswer = (props) => {
     </div>
   );
 };
-
 export default ViewAnswer;
