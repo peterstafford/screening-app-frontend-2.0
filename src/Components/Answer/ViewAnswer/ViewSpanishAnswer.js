@@ -10,7 +10,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import { CSVLink } from "react-csv";
-
+import $ from "jquery";
 const ViewSpanishAnswer = (props) => {
   const [applyfilter, setApplyFilter] = useState("");
   const [csvData, setCsvData] = useState("");
@@ -26,7 +26,6 @@ const ViewSpanishAnswer = (props) => {
       //   field: "QuestionTwo",
       //   sort: "asc",
       // },
-
       // {
       //   label: "Question 3",
       //   field: "QuestionThree",
@@ -96,13 +95,33 @@ const ViewSpanishAnswer = (props) => {
     rows: [],
   });
   const [modalDelete, setModalDelete] = useState(false);
-
   useEffect(() => {
     getAllQuestions(applyfilter);
   }, [modalDelete, applyfilter]);
-
+  const changeColor = () => {
+    $("tbody > tr").each(function (index) {
+      // console.log("trs", this);
+      var one = $(this).children("td").eq(1).text();
+      var zero = $(this).children("td").eq(0).text();
+      var two = $(this).children("td").eq(2).text();
+      var three = $(this).children("td").eq(3).text();
+      var finalone = parseInt(one);
+      var finalzero = parseInt(zero);
+      console.log("zero", zero, one, two, three);
+      if (!(zero === "Yes" && one === "No" && two === "No" && three === "No")) {
+        $(this).css("color", "red");
+      } else {
+        $(this).css("color", "black");
+      }
+    });
+  };
+  $(document).ready(function () {
+    changeColor();
+    $(document).on("click", "th", function () {
+      changeColor();
+    });
+  });
   const toggleDelete = () => setModalDelete(!modalDelete);
-
   const handleDelete = () => {
     answerSpanishService
       .deleteAnswers()
@@ -119,7 +138,6 @@ const ViewSpanishAnswer = (props) => {
         toggleDelete();
       });
   };
-
   const getAllQuestions = (month) => {
     answerSpanishService
       .getAnswers(month)
@@ -207,7 +225,6 @@ const ViewSpanishAnswer = (props) => {
                 )
               : "none",
           });
-
           csvdata.push({
             AnswerOne: item.AnswerOne ? item.AnswerOne : "none",
             AnswerTwo: item.AnswerTwo ? item.AnswerTwo : "none",
@@ -229,7 +246,6 @@ const ViewSpanishAnswer = (props) => {
         console.log(err);
       });
   };
-
   return (
     <div class="container add-answer mt-3">
       <div className="card m-b-20">
@@ -294,7 +310,6 @@ const ViewSpanishAnswer = (props) => {
               </select>
             </div>
           </div>
-
           <MDBDataTableV5
             responsive
             striped
@@ -316,5 +331,4 @@ const ViewSpanishAnswer = (props) => {
     </div>
   );
 };
-
 export default ViewSpanishAnswer;
