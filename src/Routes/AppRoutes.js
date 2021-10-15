@@ -163,7 +163,7 @@ const AppRoutes = [
     path: "/add-familymember/:id",
     component: addRemoveFamilyMemeber,
     exact: true,
-    name: "private",
+    name: "public",
   },
 ];
 
