@@ -7,15 +7,17 @@ import AddAdmin from "../AddAdmin/AddAdmin";
 import adminServices from "../../../services/adminService";
 import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 const ViewAdmin = (props) => {
   const [modalEdit, setModalEdit] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
 
   const toggleEdit = () => setModalEdit(!modalEdit);
+  const toggleOpen = () => setModalOpen(!modalOpen);
   const toggleDelete = () => setModalDelete(!modalDelete);
 
-  // const [data, setDataa] = useState([]);
   const [selectedAdmin, setSelectedAdmin] = useState({ name: "" });
 
   const LoggedUser = adminServices.userLoggedInInfo();
@@ -80,15 +82,25 @@ const ViewAdmin = (props) => {
             lastName: item.lastName ? item.lastName : "none",
             firstName: item.firstName ? item.firstName : "none",
             action: (
-              <div className="row flex-nowrap">
+              <div className="row">
                 {LoggedUser.userRole === "SuperAdmin" ? (
-                  <MdDelete
-                    className="mdi mdi-delete-forever iconsS my-danger-icon"
-                    onClick={() => {
-                      setSelectedAdmin(item);
-                      toggleDelete();
-                    }}
-                  />
+                  <div>
+                    <MdDelete
+                      className="mdi mdi-delete-forever iconsS my-danger-icon"
+                      onClick={() => {
+                        setSelectedAdmin(item);
+                        toggleDelete();
+                      }}
+                    />
+
+                    <FaEdit
+                      className="mdi mdi-delete-forever iconsS my-danger-icon"
+                      onClick={() => {
+                        setSelectedAdmin(item);
+                        toggleEdit();
+                      }}
+                    />
+                  </div>
                 ) : null}
               </div>
             ),
@@ -114,7 +126,7 @@ const ViewAdmin = (props) => {
               type="button"
               class="btn btn-outline-primary btn-lg"
               onClick={() => {
-                toggleEdit();
+                toggleOpen();
               }}
             >
               Add Admin
@@ -123,21 +135,27 @@ const ViewAdmin = (props) => {
         </div>
       ) : null}
       <div className="mt-4">
-      <MDBDataTableV5
-        responsive
-        striped
-        onPageChange={(val) => console.log(val)}
-        bordered={true}
-        materialSearch
-        searchTop
-        searchBottom={false}
-        hover
-        data={dataa}
-        theadColor="#000"
-      />
-          </div>
+        <MDBDataTableV5
+          responsive
+          striped
+          onPageChange={(val) => console.log(val)}
+          bordered={true}
+          materialSearch
+          searchTop
+          searchBottom={false}
+          hover
+          data={dataa}
+          theadColor="#000"
+        />
+      </div>
       <Modal isOpen={modalEdit} toggle={toggleEdit}>
-        <ModalHeader toggle={toggleEdit}>Add New Admin</ModalHeader>
+        <ModalHeader toggle={toggleEdit}>Edit User</ModalHeader>
+        <ModalBody>
+          <AddAdmin editable={true} admin={selectedAdmin} toggle={toggleEdit} />
+        </ModalBody>
+      </Modal>
+      <Modal isOpen={modalOpen} toggle={toggleOpen}>
+        <ModalHeader toggle={toggleOpen}>Add New Admin</ModalHeader>
         <ModalBody>
           <AddAdmin />
         </ModalBody>

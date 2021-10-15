@@ -18,6 +18,7 @@ import AddSpanishAnswer from "../Components/Answer/AddAnswer/AddSpanishAnswer";
 import AddSpanishQuestion from "../Components/Questionore/AddQuestion/AddSpanishQuestion";
 import ViewSpanishQuestion from "../Components/Questionore/ViewQuestions/ViewSpanishQuestion";
 import ViewSpanishAnswer from "../Components/Answer/ViewAnswer/ViewSpanishAnswer";
+import AnsGreetings from "../Components/Greetings/AnsGreetings";
 
 const AppRoutes = [
   {
@@ -113,6 +114,12 @@ const AppRoutes = [
   {
     path: "/greeting",
     component: Greetings,
+    exact: true,
+    name: "public",
+  },
+  {
+    path: "/ans/greeting",
+    component: AnsGreetings,
     exact: true,
     name: "public",
   },

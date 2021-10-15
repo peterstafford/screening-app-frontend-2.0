@@ -81,7 +81,7 @@ const AddSpanishAnswer = (props) => {
             userName
           )
           .then((res) => {
-            history.push("/greeting");
+            history.push("/ans/greeting");
             answerSpanishServices.handleCustomMessage("Added Successfully");
           });
       }}

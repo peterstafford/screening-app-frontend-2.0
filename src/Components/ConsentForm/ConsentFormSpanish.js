@@ -74,7 +74,7 @@ const ConsentFormSpanish = (props) => {
           como se indica en los requerimientos de reporte sobre el virus
           Covid-19. Gracias por ayudarnos a mantener nuestros edificios a salvo.
           Por favor revise su plan de datos/wifi por posibles costos asi como
-          tambien sus derechos en |  
+          tambien sus derechos en |
           <a href="https://www.oag.ca.gov/privacy/ccpa" target="_blank">
             California Consumer Privacy Act (CCPA) State of California -
             Department of Justice - Office of the Attorney General
@@ -224,7 +224,7 @@ const ConsentFormSpanish = (props) => {
                 </div>
               </div>
 
-              <div class="col d-flex justify-content-center mt-3">
+              <div class="col d-flex justify-content-center mt-3 safari">
                 <button
                   type="button"
                   class="btn btn-success btn-lg"

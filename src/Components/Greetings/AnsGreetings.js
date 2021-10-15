@@ -4,7 +4,7 @@ import Check from "../../images/check.png";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-const Greetings = () => {
+const AnsGreetings = () => {
   const date = new Date();
   // console.log("date", date);
   return (
@@ -16,17 +16,10 @@ const Greetings = () => {
       </div>
       <div className="row mt-2 datee">
         <h3>{moment(date).format("MMMM Do YYYY, h:mm a")}</h3>
-        <h1>Thank you</h1>
-      </div>
-      <div className="row mt-3">
-        <Link to="/consentform">
-          <button type="button" class="btn btn-success btn-lg">
-            <b>+</b> Add Member
-          </button>
-        </Link>
+        <h1>Thank you for your answers</h1>
       </div>
     </div>
   );
 };
 
-export default Greetings;
+export default AnsGreetings;

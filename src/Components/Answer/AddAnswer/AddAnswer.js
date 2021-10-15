@@ -79,7 +79,7 @@ const AddAnswer = (props) => {
             data[0].userName
           )
           .then((res) => {
-            history.push("/greeting");
+            history.push("/ans/greeting");
             currentQuestionServices.handleCustomMessage("Added Successfully");
           });
       }}

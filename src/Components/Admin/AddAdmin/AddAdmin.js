@@ -7,43 +7,63 @@ import { toast } from "react-toastify";
 
 const AddAdmin = (props) => {
   let sideBarState = props.state;
+  const editable = props.editable;
+  const admin = props.admin;
 
   return (
     <Formik
       initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        // userRole: "",
+        firstName: editable && admin.firstName,
+        lastName: editable && admin.lastName,
+        email: editable && admin.email,
+        password: editable && admin.password,
+        confirmPassword: editable && admin.password,
       }}
-      validationSchema={adminValidation.newAdminValidation}
+      // validationSchema={adminValidation.newAdminValidation}
       onSubmit={(values, actions) => {
         console.log("Valuessss", values);
-        adminService
-          .register(
-            values.firstName,
-            values.lastName,
-            values.email,
-            values.password
-            // values.userRole
-          )
-          .then((res) => {
-            adminService.handleCustomMessage("Registration Successfully");
-            // this.props.history.push("/");
-            // window.location.reload();
-          })
-          .catch((err) => {
-            toast.error(err.response.data, {
-              position: toast.POSITION.TOP_RIGHT,
-            });
-          });
+        editable
+          ? adminService
+              .updateAllUserFields(
+                admin._id,
+                values.firstName,
+                values.lastName,
+                values.email,
+                values.password
+              )
+              .then((res) => {
+                adminService.handleMessage("Updated Admin");
+                props.toggle();
+                // console.log("res", res);
+              })
+              .catch((err) => {
+                adminService.handleCustomMessage(err.response.data);
+                props.toggle();
+              })
+          : adminService
+              .register(
+                values.firstName,
+                values.lastName,
+                values.email,
+                values.password
+                // values.userRole
+              )
+              .then((res) => {
+                adminService.handleCustomMessage("Registration Successfully");
+                // this.props.history.push("/");
+                // window.location.reload();
+              })
+              .catch((err) => {
+                toast.error(err.response.data, {
+                  position: toast.POSITION.TOP_RIGHT,
+                });
+              });
       }}
     >
       {(props) => {
         return (
           <div className="container add-admin">
+            <h1> {console.log("err", props.errors)}</h1>
             <div className="mb-3 row">
               <label
                 for="staticEmail"
@@ -64,7 +84,7 @@ const AddAdmin = (props) => {
                   onBlur={props.handleBlur}
                   name="lastName"
                   className="form-control"
-                  id="staticEmail"
+                  id="lastName"
                   placeholder="Enter Last Name"
                   value={props.values.lastName}
                   onChange={props.handleChange("lastName")}
@@ -123,7 +143,7 @@ const AddAdmin = (props) => {
                   onBlur={props.handleBlur}
                   name="email"
                   className="form-control"
-                  id="staticEmail"
+                  id="email"
                   placeholder="Please Enter Email"
                   value={props.values.email}
                   onChange={props.handleChange("email")}
@@ -162,36 +182,68 @@ const AddAdmin = (props) => {
                 </span>
               </div>
             </div>
-            <div className="mb-3 row">
-              <label
-                for="inputPassword"
-                className={`${
-                  sideBarState === true ? "col-sm-2" : "col-sm-4"
-                } col-form-label text-align-end`}
-              >
-                Re-Enter Password
-              </label>
-              <div
-                className={`${
-                  sideBarState === true ? "col-sm-10" : "col-sm-8"
-                }`}
-              >
-                <input
-                  type="password"
-                  onBlur={props.handleBlur}
-                  name="confirmPassword"
-                  className="form-control"
-                  id="inputConfirmPassword"
-                  placeholder="Please Confirm Password"
-                  value={props.values.confirmPassword}
-                  onChange={props.handleChange("confirmPassword")}
-                />
-                <span id="err" className="invalid-feedback require">
-                  {props.touched.confirmPassword &&
-                    props.errors.confirmPassword}
-                </span>
+            {editable ? null : (
+              <div className="mb-3 row">
+                <label
+                  for="inputPassword"
+                  className={`${
+                    sideBarState === true ? "col-sm-2" : "col-sm-4"
+                  } col-form-label text-align-end`}
+                >
+                  Re-Enter Password
+                </label>
+                <div
+                  className={`${
+                    sideBarState === true ? "col-sm-10" : "col-sm-8"
+                  }`}
+                >
+                  <input
+                    type="password"
+                    onBlur={props.handleBlur}
+                    name="confirmPassword"
+                    className="form-control"
+                    id="inputConfirmPassword"
+                    placeholder="Please Confirm Password"
+                    value={props.values.confirmPassword}
+                    onChange={props.handleChange("confirmPassword")}
+                  />
+                  <span id="err" className="invalid-feedback require">
+                    {props.touched.confirmPassword &&
+                      props.errors.confirmPassword}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
+            {/* // <div className="mb-3 row">
+            //   <label
+            //     for="inputPassword"
+            //     className={`${
+            //       sideBarState === true ? "col-sm-2" : "col-sm-4"
+            //     } col-form-label text-align-end`}
+            //   >
+            //     Re-Enter Password
+            //   </label>
+            //   <div
+            //     className={`${
+            //       sideBarState === true ? "col-sm-10" : "col-sm-8"
+            //     }`}
+            //   >
+            //     <input
+            //       type="password"
+            //       onBlur={props.handleBlur}
+            //       name="confirmPassword"
+            //       className="form-control"
+            //       id="inputConfirmPassword"
+            //       placeholder="Please Confirm Password"
+            //       value={props.values.confirmPassword}
+            //       onChange={props.handleChange("confirmPassword")}
+            //     />
+            //     <span id="err" className="invalid-feedback require">
+            //       {props.touched.confirmPassword &&
+            //         props.errors.confirmPassword}
+            //     </span>
+            //   </div>
+            // </div> */}
             <div className="d-flex justify-content-center bt-sub">
               <button
                 type="button"
