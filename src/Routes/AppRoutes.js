@@ -18,6 +18,7 @@ import AddSpanishAnswer from "../Components/Answer/AddAnswer/AddSpanishAnswer";
 import AddSpanishQuestion from "../Components/Questionore/AddQuestion/AddSpanishQuestion";
 import ViewSpanishQuestion from "../Components/Questionore/ViewQuestions/ViewSpanishQuestion";
 import ViewSpanishAnswer from "../Components/Answer/ViewAnswer/ViewSpanishAnswer";
+import addRemoveFamilyMemeber from "../Components/addRemoveFamilyMemeber/addRemoveFamilyMemeber";
 
 const AppRoutes = [
   {
@@ -155,6 +156,12 @@ const AppRoutes = [
   {
     path: "/answer-spanish",
     component: ViewSpanishAnswer,
+    exact: true,
+    name: "private",
+  },
+  {
+    path: "/add-familymember/:id",
+    component: addRemoveFamilyMemeber,
     exact: true,
     name: "private",
   },
