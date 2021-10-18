@@ -22,6 +22,10 @@ class UserServices {
     return axios.put(this.config.apiBaseUrl + `user/${id}`, formData);
   }
 
+  updateUserEdit(id, formData) {
+    return axios.put(this.config.apiBaseUrl + "user/" + id, formData);
+  }
+
   getUsers = () => {
     return axios.get(this.config.apiBaseUrl + "user");
   };
