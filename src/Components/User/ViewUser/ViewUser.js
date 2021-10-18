@@ -176,7 +176,7 @@ const ViewUser = (props) => {
                 type="button"
                 class="btn btn-success btn-lg"
                 onClick={() => {
-                  toggleEdit();
+                  toggleOpen();
                 }}
               >
                 Add User

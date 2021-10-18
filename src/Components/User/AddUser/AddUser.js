@@ -21,11 +21,15 @@ const AddUser = (props) => {
       onSubmit={(values, actions) => {
         console.log("Valuessss", values);
         editable
-          ? userServices.updateUserEdit(user._id, {
-              firstName: values.firstName,
-              lastName: values.lastName,
-              email: values.email,
-            })
+          ? userServices
+              .updateUserEdit(user._id, {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+              })
+              .then((res) => {
+                userServices.handleCustomMessage("Updated Successfully");
+              })
           : userServices
               .addUser({
                 firstName: values.firstName,
