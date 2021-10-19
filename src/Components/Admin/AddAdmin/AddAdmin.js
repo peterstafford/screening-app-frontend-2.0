@@ -34,7 +34,7 @@ const AddAdmin = (props) => {
                 values.password
               )
               .then((res) => {
-                adminService.handleMessage("Updated Admin");
+                adminService.handleCustomMessage("Updated Admin");
                 props.toggle();
                 toggleEdit && toggleEdit()
                 // console.log("res", res);
@@ -186,7 +186,7 @@ const AddAdmin = (props) => {
                 </span>
               </div>
             </div>
-            {editable ? null : (
+           
               <div className="mb-3 row">
                 <label
                   for="inputPassword"
@@ -217,7 +217,7 @@ const AddAdmin = (props) => {
                   </span>
                 </div>
               </div>
-            )}
+            
             <div className="d-flex justify-content-center bt-sub">
               <button
                 type="button"
