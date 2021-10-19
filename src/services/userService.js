@@ -26,6 +26,11 @@ class UserServices {
     return axios.put(this.config.apiBaseUrl + "user/" + id, formData);
   }
 
+  addUserDirect(formData) {
+    return axios.post(this.config.apiBaseUrl + "user/add", formData);
+  }
+
+
   getUsers = () => {
     return axios.get(this.config.apiBaseUrl + "user");
   };

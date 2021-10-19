@@ -68,7 +68,7 @@ const ConsentForm = (props) => {
 
       <div class="row gappp">
         <p>
-          By pressing accept below, you consent to Ronald McDonald House ’s use
+          By pressing accept below, you consent to Ronald McDonald House’s use
           of the information you provide by means of this automated app for
           purposes of monitoring your health (and other family members) as it
           applies to the Covid 19 virus reporting requirements. Thank you for
@@ -102,12 +102,12 @@ const ConsentForm = (props) => {
         onSubmit={(values, actions) => {
           console.log("Valuessss", values);
           userServices
-            .addUser({
+            .addUserDirect({
               firstName: values.firstName,
               lastName: values.lastName,
               email: values.email,
               recieveEmail: consent === true ? "Yes" : "No",
-              userId: userId,
+              // userId: userId,
               familyMembers: familyDetails,
             })
             .then((res) => {

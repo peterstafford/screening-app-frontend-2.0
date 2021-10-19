@@ -9,6 +9,8 @@ const AddAdmin = (props) => {
   let sideBarState = props.state;
   const editable = props.editable;
   const admin = props.admin;
+  const toggleEdit = props.toggleEdit
+  const toggleOpen = props.toggleOpen;
 
   return (
     <Formik
@@ -19,7 +21,7 @@ const AddAdmin = (props) => {
         password: editable && admin.password,
         confirmPassword: editable && admin.password,
       }}
-      // validationSchema={adminValidation.newAdminValidation}
+      validationSchema={adminValidation.newAdminValidation}
       onSubmit={(values, actions) => {
         console.log("Valuessss", values);
         editable
@@ -34,6 +36,7 @@ const AddAdmin = (props) => {
               .then((res) => {
                 adminService.handleMessage("Updated Admin");
                 props.toggle();
+                toggleEdit && toggleEdit()
                 // console.log("res", res);
               })
               .catch((err) => {
@@ -50,6 +53,7 @@ const AddAdmin = (props) => {
               )
               .then((res) => {
                 adminService.handleCustomMessage("Registration Successfully");
+                toggleOpen && toggleOpen()
                 // this.props.history.push("/");
                 // window.location.reload();
               })
@@ -214,36 +218,6 @@ const AddAdmin = (props) => {
                 </div>
               </div>
             )}
-            {/* // <div className="mb-3 row">
-            //   <label
-            //     for="inputPassword"
-            //     className={`${
-            //       sideBarState === true ? "col-sm-2" : "col-sm-4"
-            //     } col-form-label text-align-end`}
-            //   >
-            //     Re-Enter Password
-            //   </label>
-            //   <div
-            //     className={`${
-            //       sideBarState === true ? "col-sm-10" : "col-sm-8"
-            //     }`}
-            //   >
-            //     <input
-            //       type="password"
-            //       onBlur={props.handleBlur}
-            //       name="confirmPassword"
-            //       className="form-control"
-            //       id="inputConfirmPassword"
-            //       placeholder="Please Confirm Password"
-            //       value={props.values.confirmPassword}
-            //       onChange={props.handleChange("confirmPassword")}
-            //     />
-            //     <span id="err" className="invalid-feedback require">
-            //       {props.touched.confirmPassword &&
-            //         props.errors.confirmPassword}
-            //     </span>
-            //   </div>
-            // </div> */}
             <div className="d-flex justify-content-center bt-sub">
               <button
                 type="button"

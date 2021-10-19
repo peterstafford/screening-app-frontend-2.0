@@ -81,7 +81,7 @@ class AdminServices {
   }
 
   updateAllUserFields = (id, firstName, lastName, email, password) => {
-    console.log("service", id, firstName, lastName, email, password);
+    // console.log("service", id, firstName, lastName, email, password);
     return axios.put(this.config.apiBaseUrl + `admin/update-admin/${id}`, {
       firstName,
       lastName,
