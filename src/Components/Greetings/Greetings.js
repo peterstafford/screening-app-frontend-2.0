@@ -3,9 +3,11 @@ import "./Greetings.scss";
 import Check from "../../images/check.png";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 const Greetings = () => {
   const date = new Date();
+
   // console.log("date", date);
   return (
     <div className="cotainer greeting">

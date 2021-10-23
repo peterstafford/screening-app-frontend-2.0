@@ -107,7 +107,7 @@ const ConsentForm = (props) => {
               lastName: values.lastName,
               email: values.email,
               recieveEmail: consent === true ? "Yes" : "No",
-              // userId: userId,
+              userId: userId,
               familyMembers: familyDetails,
             })
             .then((res) => {

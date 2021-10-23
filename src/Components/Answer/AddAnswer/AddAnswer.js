@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./AddAnswer.scss";
 import Logo from "../../../images/logo.png";
+
 import answerServices from "../../../services/answerServices";
+import userServices from "../../../services/userService";
 import currentQuestionServices from "../../../services/currentQuestion";
 import shortValidations from "../../../validations/shortValidations";
 import { Formik } from "formik";
@@ -10,16 +12,28 @@ import { convertFromRaw, EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import MaskInput from "react-maskinput";
+import { useLocation } from "react-router-dom";
 
 const AddAnswer = (props) => {
   const [data, setDataa] = useState([]);
   const history = useHistory();
+  const [userInfo, setUserInfo] = useState([]);
+  const [userName, setUserName] = useState([]);
   let userId = props.match.params.userId;
-  let userName = props.match.params.userName;
-  console.log("ID ddddd", data);
+  const location = useLocation();
+
   useEffect(() => {
     getQuestion();
+    getUser();
+    setUserName(props.match.params.userName);
   }, []);
+
+  const getUser = () => {
+    userServices.getSingleUser(userId).then((res) => {
+      setUserInfo(res.data);
+      console.log("User Info", res.data);
+    });
+  };
 
   const getQuestion = () => {
     currentQuestionServices
@@ -55,6 +69,7 @@ const AddAnswer = (props) => {
         Phone: "",
         PersonComp: "",
         Purpose: "",
+        userFamilyMember: "",
       }}
       validationSchema={shortValidations.newAnswerValidation}
       onSubmit={(values, actions) => {
@@ -75,11 +90,14 @@ const AddAnswer = (props) => {
             values.PersonComp,
             values.Purpose,
             props.match.params.userId,
-            props.match.params.userName,
+            values.userFamilyMember,
             data[0].userName
           )
           .then((res) => {
-            history.push("/ans/greeting");
+            history.push({
+              pathname: "/ans/greeting",
+              state: { user: userInfo, userName: userName },
+            });
             currentQuestionServices.handleCustomMessage("Added Successfully");
           });
       }}
@@ -332,6 +350,28 @@ const AddAnswer = (props) => {
                         {props.touched.LastName && props.errors.LastName}
                       </span>
                     </div>
+                    {location &&
+                    location.state &&
+                    location.state.familyMember === 1 ? (
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">
+                          Enter Family Member Name
+                        </label>
+                        <input
+                          type="text"
+                          name="userFamilyMember"
+                          className="form-control"
+                          id="staticuserFamilyMember"
+                          placeholder="Last Name, First Name"
+                          onChange={props.handleChange("userFamilyMember")}
+                        />
+                        <span id="err" className="invalid-feedback">
+                          {props.touched.LastName && props.errors.LastName}
+                        </span>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                     {/* <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">
                         Enter First Name
