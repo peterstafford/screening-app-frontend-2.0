@@ -112,7 +112,7 @@ const ViewUser = (props) => {
               <div className="row">
                 <div>
                   <MdDelete
-                    size={25}
+                    size={20}
                     className="mdi mdi-delete-forever iconsS my-danger-icon"
                     onClick={() => {
                       setSelectedUsers(item);
@@ -122,6 +122,7 @@ const ViewUser = (props) => {
 
                   <FaEdit
                     className="mdi mdi-delete-forever iconsS my-danger-icon"
+                    size={20}
                     onClick={() => {
                       setSelectedUsers(item);
                       toggleEdit();
