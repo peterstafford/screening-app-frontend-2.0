@@ -314,7 +314,7 @@ const AddAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Enter Name
                       </label>
                       <input
@@ -332,42 +332,10 @@ const AddAnswer = (props) => {
                         {props.touched.LastName && props.errors.LastName}
                       </span>
                     </div>
-                    {/* <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
-                        Enter First Name
-                      </label>
-                      <input
-                        disabled
-                        type="text"
-                        onBlur={props.handleBlur}
-                        name="Name"
-                        className="form-control"
-                        id="staticName"
-                        placeholder="Please Enter your First Name"
-                        value={props.values.Name}
-                        onChange={props.handleChange("Name")}
-                      />
-                      <span id="err" className="invalid-feedback">
-                        {props.touched.Name && props.errors.Name}
-                      </span>
-                    </div> */}
-
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Phone Number
                       </label>
-                      {/* <input
-                      
-                        type="text"
-                        onBlur={props.handleBlur}
-                        name="Phone"
-                        className="form-control"
-                        id="staticPhone"
-                        data-inputmask="'alias': 'phonebe'"
-                        placeholder="Please Enter Contact Number"
-                        value={props.values.Phone}
-                        onChange={props.handleChange("Phone")}
-                      /> */}
                       <div className="row">
                         <MaskInput
                           alwaysShowMask
@@ -388,7 +356,7 @@ const AddAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Name of person completing screening
                       </label>
                       <input
@@ -406,7 +374,7 @@ const AddAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Purpose for Visit & Contact:
                       </label>
                       <input
