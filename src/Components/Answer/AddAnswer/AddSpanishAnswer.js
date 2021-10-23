@@ -316,7 +316,7 @@ const AddSpanishAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Apellido
                       </label>
                       <input
@@ -354,7 +354,7 @@ const AddSpanishAnswer = (props) => {
                     </div> */}
 
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Teléfono
                       </label>
                       <div className="row">
@@ -386,7 +386,7 @@ const AddSpanishAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Persona que llena el formulario (Apellido, Nombre)
                       </label>
                       <input
@@ -404,7 +404,7 @@ const AddSpanishAnswer = (props) => {
                       </span>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">
+                      <label for="exampleInputEmail1" class="form-label f-size">
                         Razón de visita?
                       </label>
                       <input
