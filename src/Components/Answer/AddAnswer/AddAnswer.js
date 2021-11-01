@@ -336,7 +336,6 @@ const AddAnswer = (props) => {
                         Enter Name
                       </label>
                       <input
-                        disabled
                         type="text"
                         onBlur={props.handleBlur}
                         name="LastName"
