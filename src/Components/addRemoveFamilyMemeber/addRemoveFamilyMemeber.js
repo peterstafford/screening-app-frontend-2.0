@@ -183,7 +183,7 @@ const AddRemoveFamilyMemeber = (props) => {
                     // console.log("consent", consent);
                   }}
                 >
-                  Update Profile
+                  Update
                 </button>
               </div>
             </div>
