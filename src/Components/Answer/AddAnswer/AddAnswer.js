@@ -90,7 +90,7 @@ const AddAnswer = (props) => {
             values.PersonComp,
             values.Purpose,
             props.match.params.userId,
-            values.userFamilyMember,
+            props.match.params.userName,
             data[0].userName
           )
           .then((res) => {
@@ -342,14 +342,14 @@ const AddAnswer = (props) => {
                         className="form-control"
                         id="staticLastName"
                         placeholder="Last Name, First Name"
-                        value={props.values.LastName}
+                        // value={props.values.LastName}
                         onChange={props.handleChange("LastName")}
                       />
                       <span id="err" className="invalid-feedback">
                         {props.touched.LastName && props.errors.LastName}
                       </span>
                     </div>
-                    {location &&
+                    {/* {location &&
                     location.state &&
                     location.state.familyMember === 1 ? (
                       <div class="mb-3">
@@ -370,7 +370,7 @@ const AddAnswer = (props) => {
                       </div>
                     ) : (
                       <></>
-                    )}
+                    )} */}
                     {/* <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">
                         Enter First Name

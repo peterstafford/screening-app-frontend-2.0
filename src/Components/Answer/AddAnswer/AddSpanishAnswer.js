@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./AddAnswer.scss";
 import Logo from "../../../images/logo.png";
 import answerServices from "../../../services/answerServices";
+import userServices from "../../../services/userService";
+
 import currentQuestionServices from "../../../services/currentQuestion";
 import shortValidations from "../../../validations/shortValidations";
 import { Formik } from "formik";
@@ -15,12 +17,24 @@ import MaskInput from "react-maskinput";
 
 const AddSpanishAnswer = (props) => {
   const [data, setDataa] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+  const [userName, setUserName] = useState([]);
+
   const history = useHistory();
   let userId = props.match.params.userId;
-  let userName = props.match.params.userName;
+  // let userName = props.match.params.userName;
   useEffect(() => {
     getQuestion();
+    getUser();
+    setUserName(props.match.params.userName);
   }, []);
+
+  const getUser = () => {
+    userServices.getSingleUser(userId).then((res) => {
+      setUserInfo(res.data);
+      console.log("User Info", res.data);
+    });
+  };
 
   const getQuestion = () => {
     currentSpanishQuestionServices
@@ -56,6 +70,7 @@ const AddSpanishAnswer = (props) => {
         Phone: "",
         PersonComp: "",
         Purpose: "",
+        userFamilyMember: "",
       }}
       validationSchema={shortValidations.newAnswerValidation}
       onSubmit={(values, actions) => {
@@ -72,16 +87,18 @@ const AddSpanishAnswer = (props) => {
             values.AnswerThree,
             values.AnswerFour,
             values.LastName,
-            // values.Name,
             values.Phone,
             values.PersonComp,
             values.Purpose,
             props.match.params.userId,
             props.match.params.userName.match,
-            userName
+            data[0].userName
           )
           .then((res) => {
-            history.push("/ans/greeting");
+            history.push({
+              pathname: "/ans/greeting",
+              state: { user: userInfo, userName: userName },
+            });
             answerSpanishServices.handleCustomMessage("Added Successfully");
           });
       }}
@@ -320,14 +337,13 @@ const AddSpanishAnswer = (props) => {
                         Apellido
                       </label>
                       <input
-                        disabled
                         type="text"
                         onBlur={props.handleBlur}
                         name="LastName"
                         className="form-control"
                         id="staticLastName"
                         placeholder="Last Name, First Name"
-                        value={props.values.LastName}
+                        // value={props.values.LastName}
                         onChange={props.handleChange("LastName")}
                       />
                       <span id="err" className="invalid-feedback">
