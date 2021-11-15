@@ -159,71 +159,7 @@ const ViewSpanishAnswer = (props) => {
             Purpose: item.Purpose ? item.Purpose : "none",
             PersonComp: item.PersonComp ? item.PersonComp : "none",
             LastName: item.LastName ? item.LastName : "none",
-            user: item.user ? item.user.email : "none",
-            QuestionFour: item.questionSpanish.QuestionFour
-              ? item.questionSpanish.QuestionFour && (
-                  <Editor
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClass"
-                    toolbarStyle={{ display: "none" }}
-                    readOnly
-                    editorState={EditorState.createWithContent(
-                      convertFromRaw(
-                        JSON.parse(item.questionSpanish.QuestionFour)
-                      )
-                    )}
-                  />
-                )
-              : "none",
-            QuestionThree: item.questionSpanish.QuestionThree
-              ? item.questionSpanish.QuestionThree && (
-                  <Editor
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClass"
-                    toolbarStyle={{ display: "none" }}
-                    readOnly
-                    editorState={EditorState.createWithContent(
-                      convertFromRaw(
-                        JSON.parse(item.questionSpanish.QuestionThree)
-                      )
-                    )}
-                  />
-                )
-              : "none",
-            QuestionTwo: item.questionSpanish.QuestionTwo
-              ? item.questionSpanish.QuestionTwo && (
-                  <Editor
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClass"
-                    toolbarStyle={{ display: "none" }}
-                    readOnly
-                    editorState={EditorState.createWithContent(
-                      convertFromRaw(
-                        JSON.parse(item.questionSpanish.QuestionTwo)
-                      )
-                    )}
-                  />
-                )
-              : "none",
-            QuestionOne: item.questionSpanish.QuestionOne
-              ? item.questionSpanish.QuestionOne && (
-                  <Editor
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClass"
-                    toolbarStyle={{ display: "none" }}
-                    readOnly
-                    editorState={EditorState.createWithContent(
-                      convertFromRaw(
-                        JSON.parse(item.questionSpanish.QuestionOne)
-                      )
-                    )}
-                  />
-                )
-              : "none",
+            user: item.user ? item.user.email : "User Deleted",
           });
           csvdata.push({
             AnswerOne: item.AnswerOne ? item.AnswerOne : "none",
@@ -231,7 +167,7 @@ const ViewSpanishAnswer = (props) => {
             AnswerThree: item.AnswerThree ? item.AnswerThree : "none",
             AnswerFour: item.AnswerFour ? item.AnswerFour : "none",
             Date: item.createdAt ? moment(item.createdAt).format("LL") : "none",
-            User: item.user ? item.user.email : "none",
+            User: item.user ? item.user.email : "User Deleted",
             Name: item.LastName ? item.LastName : "none",
             Contact: item.Phone ? item.Phone : "none",
             PersonCompleting: item.PersonComp ? item.PersonComp : "none",
