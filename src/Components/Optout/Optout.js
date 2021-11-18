@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Optout.scss";
 import Check from "../../images/check.png";
 import Logo from "../../images/logo1.png";
 import { Link } from "react-router-dom";
+import userServices from "../../services/userService";
 
-const Optout = () => {
+const Optout = (props) => {
+  console.log(props);
+  let userId = props.match.params.id;
+  useEffect(() => {
+    userServices.updateUserEdit(userId, {
+      recieveEmail: "No",
+    });
+  }, []);
   return (
     <div className="cotainer greeting">
       <div className="row">

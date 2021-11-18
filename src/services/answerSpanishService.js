@@ -56,11 +56,13 @@ class AnswerSpanishServices {
     });
 
   getAnswers = (month) => {
-    return axios.get(this.config.apiBaseUrl + `answers-spanish/?startMonth=${month}`);
+    return axios.get(
+      this.config.apiBaseUrl + `answers-spanish/?startMonth=${month}`
+    );
   };
 
   deleteAnswers() {
-    return axios.delete(this.config.apiBaseUrl + "answers-spanish/monthly");
+    return axios.delete(this.config.apiBaseUrl + "answers-spanish");
   }
 
   handleMessage(type) {

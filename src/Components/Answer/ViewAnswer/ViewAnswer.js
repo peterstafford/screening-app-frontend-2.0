@@ -10,6 +10,8 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import { CSVLink } from "react-csv";
 import $ from "jquery";
+import { toast } from "react-toastify";
+
 const ViewAnswer = (props) => {
   const [applyfilter, setApplyFilter] = useState("");
   const [modalDelete, setModalDelete] = useState(false);
@@ -98,21 +100,20 @@ const ViewAnswer = (props) => {
     getAllQuestions(applyfilter);
   }, [modalDelete, applyfilter]);
   const toggleDelete = () => setModalDelete(!modalDelete);
+
   const handleDelete = () => {
+    toggleDelete();
+
     answerService
       .deleteAnswers()
       .then((res) => {
-        if (res.data.deletedCount === 0) {
-          return answerService.handleMessage("noData");
-        } else {
-          answerService.handleMessage("delete");
-          toggleDelete();
-        }
+        console.log(res);
+        return answerService.handleCustomMessage(res.data);
       })
       .catch((err) => {
-        answerService.handleError();
-        toggleDelete();
-        console.log("err", err);
+        toast.error(err.response.data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       });
   };
   const changeColor = () => {
@@ -324,7 +325,7 @@ const ViewAnswer = (props) => {
             </ModalHeader>
             <ModalBody>
               {" "}
-              <b>This will delete all user responses in the last month</b>
+              <b>This will delete all user responses</b>
               <br />
               Are you sure you want to delete responses?
             </ModalBody>

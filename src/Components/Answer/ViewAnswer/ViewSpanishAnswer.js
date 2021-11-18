@@ -10,6 +10,8 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MDBDataTableV5, MDBBtn } from "mdbreact";
 import { CSVLink } from "react-csv";
+import { toast } from "react-toastify";
+
 import $ from "jquery";
 const ViewSpanishAnswer = (props) => {
   const [applyfilter, setApplyFilter] = useState("");
@@ -123,19 +125,18 @@ const ViewSpanishAnswer = (props) => {
   });
   const toggleDelete = () => setModalDelete(!modalDelete);
   const handleDelete = () => {
+    toggleDelete();
+
     answerSpanishService
       .deleteAnswers()
       .then((res) => {
-        if (res.data.deletedCount === 0) {
-          return answerSpanishService.handleMessage("noData");
-        } else {
-          answerSpanishService.handleMessage("delete");
-          toggleDelete();
-        }
+        console.log(res);
+        return answerSpanishService.handleCustomMessage(res.data);
       })
       .catch((err) => {
-        answerSpanishService.handleError();
-        toggleDelete();
+        toast.error(err.response.data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       });
   };
   const getAllQuestions = (month) => {
@@ -262,6 +263,30 @@ const ViewSpanishAnswer = (props) => {
             data={dataa}
             theadColor="#000"
           />
+          <Modal isOpen={modalDelete} toggle={toggleDelete}>
+            <ModalHeader toggle={toggleDelete}>
+              Delete User Responses?
+            </ModalHeader>
+            <ModalBody>
+              {" "}
+              <b>This will delete all user responses</b>
+              <br />
+              Are you sure you want to delete responses?
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color="primary"
+                onClick={() => {
+                  handleDelete();
+                }}
+              >
+                Yes
+              </Button>{" "}
+              <Button color="secondary" onClick={toggleDelete}>
+                No
+              </Button>
+            </ModalFooter>
+          </Modal>
         </div>
       </div>
     </div>

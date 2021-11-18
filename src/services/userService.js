@@ -30,7 +30,6 @@ class UserServices {
     return axios.post(this.config.apiBaseUrl + "user/add", formData);
   }
 
-
   getUsers = () => {
     return axios.get(this.config.apiBaseUrl + "user");
   };
@@ -41,6 +40,10 @@ class UserServices {
 
   deleteUsers(id) {
     return axios.delete(this.config.apiBaseUrl + "user/" + id);
+  }
+
+  deleteAllUsers() {
+    return axios.delete(this.config.apiBaseUrl + "user/all-user");
   }
 
   updateAllUserFields = (id) =>

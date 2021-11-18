@@ -61,7 +61,7 @@ class AnswerServices {
   };
 
   deleteAnswers() {
-    return axios.delete(this.config.apiBaseUrl + "answers/monthly");
+    return axios.delete(this.config.apiBaseUrl + "answers");
   }
 
   handleMessage(type) {
