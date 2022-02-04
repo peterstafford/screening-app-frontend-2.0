@@ -8,6 +8,7 @@ import {
   BsFillPeopleFill,
   BsFillPersonFill,
   BsQuestionSquareFill,
+  BsCalendar2EventFill
 } from "react-icons/bs";
 import { Router, Link } from "react-router-dom";
 
@@ -68,6 +69,12 @@ const Sidebar = (props) => {
           <MenuItem>
             User Spanish Response
             <Link to="/answer-spanish" />
+          </MenuItem>
+        </SubMenu>
+        <SubMenu title="Events" icon={<BsCalendar2EventFill size={20} />}>
+          <MenuItem>
+           Events
+            <Link to="/event" />
           </MenuItem>
         </SubMenu>
       </Menu>

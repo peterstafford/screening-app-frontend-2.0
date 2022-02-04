@@ -20,8 +20,22 @@ import ViewSpanishQuestion from "../Components/Questionore/ViewQuestions/ViewSpa
 import ViewSpanishAnswer from "../Components/Answer/ViewAnswer/ViewSpanishAnswer";
 import AnsGreetings from "../Components/Greetings/AnsGreetings";
 import addRemoveFamilyMemeber from "../Components/addRemoveFamilyMemeber/addRemoveFamilyMemeber";
+import AddEvent from "../Components/Events/AddEvents/AddEvent";
+import ViewEvent from "../Components/Events/ViewEvents/ViewEvent";
 
 const AppRoutes = [
+  {
+    path: "/event/add",
+    component: AddEvent,
+    exact: true,
+    name: "private",
+  },
+  {
+    path: "/event",
+    component: ViewEvent,
+    exact: true,
+    name: "private",
+  },
   {
     path: "/admin/add",
     component: AddAdmin,
