@@ -3,6 +3,7 @@ import "./AddEvent.scss";
 import { Formik } from "formik";
 import DateTimePicker from "react-datetime-picker";
 import eventValidation from "../../../validations/eventValidation";
+import eventValidationNew from "../../../validations/eventValidationNew";
 import eventsService from "../../../services/eventService";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -25,7 +26,7 @@ const AddEvent = (props) => {
         endingDate:
           editable && event.endingDate ? event.endingDate : new Date(),
       }}
-      validationSchema={eventValidation.eventValidation}
+      validationSchema={editable ? eventValidationNew.eventValidation : eventValidation.eventValidation}
       onSubmit={(values, actions) => {
         console.log("Valuessss", values);
         let formData = new FormData();
@@ -112,7 +113,7 @@ const AddEvent = (props) => {
                   sideBarState === true ? "col-sm-10" : "col-sm-8"
                 }`}
               >
-                <input
+                <textarea
                   type="text"
                   onBlur={props.handleBlur}
                   name="description"
