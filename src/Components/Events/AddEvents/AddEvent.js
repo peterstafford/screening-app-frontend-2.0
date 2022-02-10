@@ -178,11 +178,9 @@ const AddEvent = (props) => {
                   onChange={(e) => {
                     props.setFieldValue("startingDate", e);
                   }}
-                  value={
-                    editable && props.values.startingDate
+                  value={editable && props.values.startingDate
                       ? new Date(props.values.startingDate)
-                      : props.values.startingDate
-                  }
+                      : props.values.startingDate}
                 />
                 <span id="err" className="invalid-feedback require">
                   {props.touched.startingDate && props.errors.startingDate}
