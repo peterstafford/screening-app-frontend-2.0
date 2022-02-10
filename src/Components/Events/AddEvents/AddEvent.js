@@ -46,6 +46,7 @@ const AddEvent = (props) => {
                 // console.log("res", res);
               })
               .catch((err) => {
+                console.log("ERRRROR",err)
                 eventsService.handleCustomMessage(err.response.data);
                 props.toggle();
               })
