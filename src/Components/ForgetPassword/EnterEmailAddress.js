@@ -14,7 +14,7 @@ const EnterEmailAddress = (props) => {
       }}
       validationSchema={passwordResetValidation.passwordReset}
       onSubmit={(values, actions) => {
-        console.log("Valuessss", values);
+        console.log("Valuessss--->", values);
         passwordReset
           .sendPasswordReset({ email: values.email })
           .then((res) => {

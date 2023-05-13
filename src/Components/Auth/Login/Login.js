@@ -41,6 +41,7 @@ const Login = (props) => {
                         type="text"
                         name="email"
                         placeholder="Enter Email"
+                        contentEditable
                         onBlur={props.handleBlur}
                         value={props.values.email}
                         onChange={props.handleChange("email")}
