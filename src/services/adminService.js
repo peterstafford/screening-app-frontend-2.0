@@ -25,6 +25,7 @@ class AdminServices {
           resolve(token);
         })
         .catch((err) => {
+          console.log('err--->', err)
           toast.error(err?.response?.data, {
             position: toast.POSITION.TOP_RIGHT,
           });
