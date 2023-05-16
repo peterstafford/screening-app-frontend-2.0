@@ -7,7 +7,7 @@ axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
 
 class AdminServices {
-  constructor() {
+  constructor () {
     this.config = new Configuration();
   }
 
@@ -44,7 +44,7 @@ class AdminServices {
           resolve(token);
         })
         .catch((err) => {
-          toast.error(err.response.data, {
+          toast.error(err?.response?.data, {
             position: toast.POSITION.TOP_RIGHT,
           });
           reject(err);
