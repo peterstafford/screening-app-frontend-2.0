@@ -4,7 +4,7 @@ import "./InputList.scss";
 
 class InputList extends React.Component {
   handleChange = (e) => {
-    if (["familyDetails"].includes(e.target.name)) {
+    if (["familyDetails"]?.includes(e.target.name)) {
       let familyDetails = [...this.props.familyDetails];
       familyDetails[e.target.dataset.id][e.target.name] = e.target.value;
     } else {
